@@ -3,13 +3,13 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pea-sim-parametric"
+name = "bayesian-optimize-invest"
 version = "0.1.0"
-description = "Parametric Monte Carlo simulator for PEA portfolios"
+description = "Parametric Monte Carlo simulator for portfolios with ETF"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
-authors = [{name = "OpenAI Codex"}]
+authors = [{name = "Portal Frame Inc"}]
 dependencies = [
   "numpy>=1.24",
   "pandas>=2.0",

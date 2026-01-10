@@ -1,0 +1,19 @@
+run_name: pea_sim_example
+time_step: D
+n_years: 10
+trading_days_per_year: 252
+n_paths: 500
+seed: 123
+initial_capital_eur: 10000
+contributions:
+  enabled: true
+  monthly_amount_eur: 200
+  day_of_month: 5
+rebalancing:
+  frequency: quarterly
+  threshold_abs: 0.05
+output:
+  base_dir: runs
+  save_nav_paths: true
+  save_weights_paths: true
+  save_turnover_paths: true

@@ -1,0 +1,7 @@
+broker:
+  model: bps_notional
+  fixed_fee_eur: 0.0
+  bps: 2.0
+slippage_bps: 1.0
+ter_accrual: daily
+min_trade_eur: 10.0

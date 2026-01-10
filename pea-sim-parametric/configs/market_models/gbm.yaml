@@ -1,0 +1,2 @@
+model_type: gbm
+enabled_assets: [WORLD, SP500, NASDAQ100]

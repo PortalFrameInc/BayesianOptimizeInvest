@@ -1,0 +1,23 @@
+assets:
+  - id: WORLD
+    mu_annual: 0.07
+    sigma_annual: 0.15
+    ter_annual: 0.002
+  - id: SP500
+    mu_annual: 0.075
+    sigma_annual: 0.16
+    ter_annual: 0.0015
+  - id: NASDAQ100
+    mu_annual: 0.085
+    sigma_annual: 0.22
+    ter_annual: 0.002
+correlations:
+  matrix:
+    - [1.0, 0.95, 0.90]
+    - [0.95, 1.0, 0.92]
+    - [0.90, 0.92, 1.0]
+leveraged_assets:
+  - id: NASDAQ100_X2
+    underlying_id: NASDAQ100
+    leverage: 2.0
+    extra_fee_annual: 0.006

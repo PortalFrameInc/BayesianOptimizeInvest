@@ -1,8 +1,8 @@
-# PEA Sim Parametric
+# PEA Sim Paramétrique
 
-Parametric Monte-Carlo simulation of a French PEA-style portfolio. The simulator uses **model-based** daily returns (GBM, Student-t, or regime-switching) without any external market data or historical calibration. It supports static allocations, rebalancing, contributions, and leveraged ETFs with daily reset, and produces reproducible output runs with plots and metrics.
+Simulation paramétrique Monte-Carlo d'un portefeuille de type PEA français. Le simulateur utilise des rendements journaliers basés sur des modèles (**GBM**, **Student-t**, ou **régimes**) sans données de marché externes ni calibration historique. Il prend en charge des allocations statiques, le rééquilibrage, les contributions, et les ETF à effet de levier avec remise à zéro quotidienne, et produit des exécutions reproductibles avec graphiques et métriques.
 
-## Install
+## Installation
 
 ```bash
 python -m venv .venv
@@ -10,9 +10,9 @@ source .venv/bin/activate
 pip install -e .
 ```
 
-## Quick start
+## Démarrage rapide
 
-Validate configs:
+Valider les configurations :
 
 ```bash
 pea-sim validate \
@@ -23,7 +23,7 @@ pea-sim validate \
   --strategy configs/strategies/buy_and_hold_world.yaml
 ```
 
-Run a single strategy:
+Lancer une stratégie unique :
 
 ```bash
 pea-sim run \
@@ -34,7 +34,7 @@ pea-sim run \
   --strategy configs/strategies/buy_and_hold_world.yaml
 ```
 
-Compare all strategies:
+Comparer toutes les stratégies :
 
 ```bash
 pea-sim compare \
@@ -45,22 +45,21 @@ pea-sim compare \
   --strategies-dir configs/strategies
 ```
 
-## Notes and assumptions
+## Notes et hypothèses
 
-- All models are parametric: **no historical data** is loaded or calibrated in this project.
-- Daily time steps are used internally, especially when leverage is present.
-- Leveraged assets are computed from underlying base returns using a daily reset:
+- Tous les modèles sont paramétriques : **aucune donnée historique** n'est chargée ni calibrée dans ce projet.
+- Des pas de temps journaliers sont utilisés en interne, en particulier lorsque la levier est présente.
+- Les actifs à effet de levier sont calculés à partir des rendements sous-jacents en utilisant une remise à zéro quotidienne :
   `r_L = leverage * r_underlying - fee_daily`.
-- Volatility targeting never synthetically borrows. If the strategy does not already contain leveraged assets, any requested leverage above 1.0 is capped at 1.0.
+- Le ciblage de volatilité n'emprunte jamais de façon synthétique. Si la stratégie ne contient pas déjà d'actifs à effet de levier, tout levier demandé au-dessus de 1.0 est limité à 1.0.
 
-## Output
+## Sorties
 
-Each run writes a timestamped folder in `runs/` with:
+Chaque exécution écrit un dossier horodaté dans `runs/` contenant :
 
-- `config_snapshot/` YAML copies
+- `config_snapshot/` copies YAML
 - `nav_paths.npy`
 - `metrics_per_path.csv`
 - `metrics_summary.csv`
 - `plots/*.png`
 - `report.md`
-

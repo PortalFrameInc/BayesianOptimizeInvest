@@ -103,6 +103,6 @@ class RegimeSwitchingModel(MarketModel):
             day_indices = np.where(regime_mask)
             returns[day_indices[0], :, day_indices[1]] = (
                 np.einsum("ij,tjp->tip", chol, normals)[day_indices[0], :, day_indices[1]]
-                + mu_adj[:, None]
+                + mu_adj[None, :]
             )
         return MarketPaths(returns=returns, asset_ids=fitted_model.asset_ids, regime=regime_index)

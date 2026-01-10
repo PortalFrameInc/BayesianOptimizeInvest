@@ -100,6 +100,11 @@ def _apply_vol_targeting(
     if not has_leveraged:
         scale = np.minimum(scale, 1.0)
     scaled = base_weights.copy()
+    if scale.ndim == 1 and scale.size > 1:
+        if scaled.ndim == 1:
+            scaled = np.repeat(scaled[:, None], scale.size, axis=1)
+        elif scaled.ndim == 2 and scaled.shape[1] == 1:
+            scaled = np.repeat(scaled, scale.size, axis=1)
     scaled[risky_indices] = scaled[risky_indices] * scale
     cash_idx = universe.asset_ids.index("CASH") if universe.cash_included else None
     if cash_idx is not None:
@@ -198,7 +203,7 @@ def simulate_portfolio(
             current_weights = np.where(current_nav > 0, holdings / current_nav, 0.0)
             diff = np.abs(current_weights - target_weights)
             if sim_config.rebalancing.threshold_abs == 0 or np.any(
-                diff > sim_config.rebalancing.threshold_abs, axis=0
+                diff > sim_config.rebalancing.threshold_abs
             ):
                 target_values = target_weights * current_nav
                 trades = target_values - holdings

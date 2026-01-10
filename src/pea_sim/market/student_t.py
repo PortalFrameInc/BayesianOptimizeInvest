@@ -45,7 +45,7 @@ class StudentTModel(MarketModel):
         chol = np.linalg.cholesky(cov_scaled)
         normals = rng.standard_normal(size=(t_steps, n_assets, n_paths))
         chi2 = rng.chisquare(df, size=(t_steps, n_paths))
-        t_samples = normals / np.sqrt(chi2 / df)[..., None]
+        t_samples = normals / np.sqrt(chi2 / df)[:, None, :]
         correlated = np.einsum("ij,tjp->tip", chol, t_samples)
         returns = correlated + fitted_model.mu_daily[:, None]
         return MarketPaths(returns=returns, asset_ids=fitted_model.asset_ids)

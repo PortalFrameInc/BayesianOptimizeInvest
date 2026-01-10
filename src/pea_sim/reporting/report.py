@@ -6,6 +6,13 @@ from typing import Dict, List
 import pandas as pd
 
 
+def _format_table(df: pd.DataFrame, *, index: bool) -> str:
+    try:
+        return df.to_markdown(index=index)
+    except ImportError:
+        return df.to_string(index=index)
+
+
 def write_report(
     output_dir: Path,
     config_files: List[Path],
@@ -19,15 +26,15 @@ def write_report(
     lines.append("")
     lines.append("## Metrics Summary")
     lines.append("")
-    lines.append(summary.to_markdown())
+    lines.append(_format_table(summary, index=True))
     lines.append("")
     lines.append("## Ranking")
     lines.append("")
-    lines.append(ranking.to_markdown(index=False))
+    lines.append(_format_table(ranking, index=False))
     lines.append("")
     lines.append("## Pareto Set")
     lines.append("")
-    lines.append(pareto.to_markdown(index=False))
+    lines.append(_format_table(pareto, index=False))
     output_dir.joinpath("report.md").write_text("\n".join(lines), encoding="utf-8")
 
 
@@ -38,13 +45,13 @@ def write_comparison_report(
     pareto: pd.DataFrame,
 ) -> None:
     lines = ["# PEA Strategy Comparison", "", "## Metrics Summary", ""]
-    lines.append(summary.to_markdown(index=False))
+    lines.append(_format_table(summary, index=False))
     lines.append("")
     lines.append("## Ranking")
     lines.append("")
-    lines.append(ranking.to_markdown(index=False))
+    lines.append(_format_table(ranking, index=False))
     lines.append("")
     lines.append("## Pareto Set")
     lines.append("")
-    lines.append(pareto.to_markdown(index=False))
+    lines.append(_format_table(pareto, index=False))
     output_dir.joinpath("report.md").write_text("\n".join(lines), encoding="utf-8")

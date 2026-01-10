@@ -70,15 +70,9 @@ def compute_metrics(
         }
     )
 
-    summary = per_path.agg([
-        "mean",
-        "median",
-        lambda x: np.quantile(x, 0.05),
-        lambda x: np.quantile(x, 0.25),
-        lambda x: np.quantile(x, 0.75),
-        lambda x: np.quantile(x, 0.95),
-    ])
-    summary.index = ["mean", "median", "p05", "p25", "p75", "p95"]
+    quantiles = per_path.quantile([0.05, 0.25, 0.75, 0.95])
+    quantiles.index = ["p05", "p25", "p75", "p95"]
+    summary = pd.concat([per_path.agg(["mean", "median"]), quantiles])
     return per_path, summary
 
 

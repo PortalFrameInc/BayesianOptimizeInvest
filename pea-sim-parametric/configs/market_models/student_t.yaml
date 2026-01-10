@@ -1,0 +1,3 @@
+model_type: student_t
+enabled_assets: [WORLD, SP500, NASDAQ100]
+df: 7.0

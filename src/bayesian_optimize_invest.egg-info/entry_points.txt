@@ -1,0 +1,2 @@
+[console_scripts]
+pea-sim = pea_sim.cli:app

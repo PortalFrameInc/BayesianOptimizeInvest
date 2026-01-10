@@ -1,3 +1,20 @@
+Metadata-Version: 2.4
+Name: bayesian-optimize-invest
+Version: 0.1.0
+Summary: Parametric Monte Carlo simulator for portfolios with ETF
+Author: Portal Frame Inc
+License: MIT
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.24
+Requires-Dist: pandas>=2.0
+Requires-Dist: pydantic>=2.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: typer>=0.9
+Requires-Dist: matplotlib>=3.7
+Provides-Extra: test
+Requires-Dist: pytest>=7.4; extra == "test"
+
 # PEA Sim (Paramétrique)
 
 Simulation paramétrique Monte-Carlo appliqué à divers portefeuille. Le simulateur utilise des rendements journaliers basés sur des modèles (**GBM**, **Student-t**, ou **régimes**) sans données de marché externes ni calibration historique. Il prend en charge des allocations statiques, le rééquilibrage, les contributions, et les ETF à effet de levier avec remise à zéro quotidienne, et produit des exécutions reproductibles avec graphiques et métriques.

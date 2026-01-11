@@ -18,7 +18,7 @@ source .venv/Scripts/activate
 pip install -e .
 ```
 
-## Démarrage rapide
+## Commandes du projets
 
 Valider les configurations :
 
@@ -28,7 +28,7 @@ pea-sim validate \
   --universe configs/universe.yaml \
   --cost configs/cost_model.yaml \
   --market configs/market_models/regimes.yaml \
-  --strategy configs/strategies/mono/mono_world.yaml
+  --strategies-dir configs/strategies
 ```
 
 Lancer une stratégie unique :

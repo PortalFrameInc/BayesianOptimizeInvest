@@ -5,7 +5,7 @@ from typing import Type, TypeVar
 
 import yaml
 
-from pea_sim.config import schemas
+from invest_sim.config import schemas
 
 ConfigType = TypeVar("ConfigType")
 

@@ -6,13 +6,13 @@ from typing import Dict, List
 
 import pandas as pd
 
-from pea_sim.config import load_cost_model, load_market_model, load_simulation, load_strategy, load_universe
-from pea_sim.market.gbm import GBMModel
-from pea_sim.market.regimes import RegimeSwitchingModel
-from pea_sim.market.student_t import StudentTModel
-from pea_sim.metrics import compute_metrics, pareto_set, select_ranking
-from pea_sim.portfolio import simulate_portfolio
-from pea_sim.reporting import plot_strategy_cdf, plot_strategy_scatter, write_comparison_report
+from invest_sim.config import load_cost_model, load_market_model, load_simulation, load_strategy, load_universe
+from invest_sim.market.gbm import GBMModel
+from invest_sim.market.regimes import RegimeSwitchingModel
+from invest_sim.market.student_t import StudentTModel
+from invest_sim.metrics import compute_metrics, pareto_set, select_ranking
+from invest_sim.portfolio import simulate_portfolio
+from invest_sim.reporting import plot_strategy_cdf, plot_strategy_scatter, write_comparison_report
 
 
 @dataclass

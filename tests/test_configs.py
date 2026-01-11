@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from pea_sim.config import load_cost_model, load_market_model, load_simulation, load_strategy, load_universe
+from invest_sim.config import load_cost_model, load_market_model, load_simulation, load_strategy, load_universe
 
 
 def test_configs_load():

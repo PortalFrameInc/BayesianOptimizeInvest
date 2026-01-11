@@ -1,6 +1,6 @@
 import numpy as np
 
-from pea_sim.config.schemas import (
+from invest_sim.config.schemas import (
     CorrelationConfig,
     CostModelConfig,
     MarketPaths,
@@ -8,7 +8,7 @@ from pea_sim.config.schemas import (
     StrategyConfig,
     UniverseConfig,
 )
-from pea_sim.portfolio import simulate_portfolio
+from invest_sim.portfolio import simulate_portfolio
 
 
 def test_portfolio_invariants():

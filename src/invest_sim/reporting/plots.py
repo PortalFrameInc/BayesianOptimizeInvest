@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from pea_sim.config.schemas import PortfolioPaths
+from invest_sim.config.schemas import PortfolioPaths
 
 
 def plot_nav_fanchart(nav: np.ndarray, output_path: Path) -> None:

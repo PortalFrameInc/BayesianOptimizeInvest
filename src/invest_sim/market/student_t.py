@@ -2,15 +2,15 @@ from __future__ import annotations
 
 import numpy as np
 
-from pea_sim.config.schemas import MarketModelConfig, MarketPaths, SimulationConfig, UniverseConfig
-from pea_sim.market.base import FittedMarketModel, MarketModel
+from invest_sim.config.schemas import MarketPaths, SimulationConfig, StudentTConfig, UniverseConfig
+from invest_sim.market.base import FittedMarketModel, MarketModel
 
 
-class GBMModel(MarketModel):
+class StudentTModel(MarketModel):
     def fit(
         self,
         universe_config: UniverseConfig,
-        market_model_config: MarketModelConfig,
+        market_model_config: StudentTConfig,
         sim_config: SimulationConfig,
     ) -> FittedMarketModel:
         asset_ids = market_model_config.enabled_assets
@@ -39,7 +39,13 @@ class GBMModel(MarketModel):
         n_assets = len(fitted_model.asset_ids)
         n_paths = sim_config.n_paths
         rng = np.random.default_rng(sim_config.seed)
-        chol = np.linalg.cholesky(fitted_model.cov_daily)
+        df = fitted_model.model_config.df
+        scale = (df - 2) / df
+        cov_scaled = fitted_model.cov_daily * scale
+        chol = np.linalg.cholesky(cov_scaled)
         normals = rng.standard_normal(size=(t_steps, n_assets, n_paths))
-        returns = np.einsum("ij,tjp->tip", chol, normals) + fitted_model.mu_daily[:, None]
+        chi2 = rng.chisquare(df, size=(t_steps, n_paths))
+        t_samples = normals / np.sqrt(chi2 / df)[:, None, :]
+        correlated = np.einsum("ij,tjp->tip", chol, t_samples)
+        returns = correlated + fitted_model.mu_daily[:, None]
         return MarketPaths(returns=returns, asset_ids=fitted_model.asset_ids)

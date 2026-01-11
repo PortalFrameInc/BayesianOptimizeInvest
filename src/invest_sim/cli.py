@@ -4,9 +4,9 @@ from pathlib import Path
 
 import typer
 
-from pea_sim.config import load_cost_model, load_market_model, load_simulation, load_strategy, load_universe
-from pea_sim.experiments.compare import compare_strategies
-from pea_sim.experiments.run import run_experiment
+from invest_sim.config import load_cost_model, load_market_model, load_simulation, load_strategy, load_universe
+from invest_sim.experiments.compare import compare_strategies
+from invest_sim.experiments.run import run_experiment
 
 app = typer.Typer(help="PEA parametric Monte Carlo simulator")
 

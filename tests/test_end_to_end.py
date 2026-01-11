@@ -2,7 +2,7 @@ from pathlib import Path
 
 import yaml
 
-from pea_sim.experiments.run import run_experiment
+from invest_sim.experiments.run import run_experiment
 
 
 def test_end_to_end_run(tmp_path: Path):

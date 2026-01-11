@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict
 
-from pea_sim.strategies.base import Strategy
+from invest_sim.strategies.base import Strategy
 
 
 @dataclass

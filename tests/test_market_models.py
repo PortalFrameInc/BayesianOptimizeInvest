@@ -1,6 +1,6 @@
 import numpy as np
 
-from pea_sim.config.schemas import (
+from invest_sim.config.schemas import (
     CorrelationConfig,
     MarketModelConfig,
     RegimeConfig,
@@ -9,9 +9,9 @@ from pea_sim.config.schemas import (
     StudentTConfig,
     UniverseConfig,
 )
-from pea_sim.market.gbm import GBMModel
-from pea_sim.market.regimes import RegimeSwitchingModel
-from pea_sim.market.student_t import StudentTModel
+from invest_sim.market.gbm import GBMModel
+from invest_sim.market.regimes import RegimeSwitchingModel
+from invest_sim.market.student_t import StudentTModel
 
 
 def _universe():

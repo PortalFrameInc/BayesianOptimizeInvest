@@ -1,11 +1,11 @@
-from pea_sim.config.load import (
+from invest_sim.config.load import (
     load_cost_model,
     load_market_model,
     load_simulation,
     load_strategy,
     load_universe,
 )
-from pea_sim.config.schemas import (
+from invest_sim.config.schemas import (
     CostModelConfig,
     MarketModelConfig,
     MarketPaths,

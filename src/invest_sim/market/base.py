@@ -6,7 +6,7 @@ from typing import List, Optional
 
 import numpy as np
 
-from pea_sim.config.schemas import MarketModelConfig, MarketPaths, SimulationConfig, UniverseConfig
+from invest_sim.config.schemas import MarketModelConfig, MarketPaths, SimulationConfig, UniverseConfig
 
 
 @dataclass(frozen=True)

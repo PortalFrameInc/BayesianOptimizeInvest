@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from pea_sim.config.schemas import CostModelConfig
+from invest_sim.config.schemas import CostModelConfig
 
 
 @dataclass(frozen=True)

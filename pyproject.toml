@@ -23,7 +23,7 @@ dependencies = [
 test = ["pytest>=7.4"]
 
 [project.scripts]
-pea-sim = "pea_sim.cli:app"
+invest-sim = "invest_sim.cli:app"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

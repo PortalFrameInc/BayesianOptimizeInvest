@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import numpy as np
 
-from pea_sim.config.schemas import MarketPaths, RegimesConfig, SimulationConfig, UniverseConfig
-from pea_sim.market.base import FittedMarketModel, MarketModel
+from invest_sim.config.schemas import MarketPaths, RegimesConfig, SimulationConfig, UniverseConfig
+from invest_sim.market.base import FittedMarketModel, MarketModel
 
 
 def _nearest_pd(matrix: np.ndarray, epsilon: float = 1e-6) -> np.ndarray:

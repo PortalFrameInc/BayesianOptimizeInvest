@@ -5,7 +5,7 @@ from typing import Dict, Tuple
 import numpy as np
 import pandas as pd
 
-from pea_sim.config.schemas import PortfolioPaths, SimulationConfig
+from invest_sim.config.schemas import PortfolioPaths, SimulationConfig
 
 
 def _max_drawdown(nav: np.ndarray) -> np.ndarray:

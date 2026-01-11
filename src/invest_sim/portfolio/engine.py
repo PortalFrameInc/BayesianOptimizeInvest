@@ -5,7 +5,7 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 
-from pea_sim.config.schemas import (
+from invest_sim.config.schemas import (
     CostModelConfig,
     MarketPaths,
     PortfolioPaths,
@@ -13,8 +13,8 @@ from pea_sim.config.schemas import (
     StrategyConfig,
     UniverseConfig,
 )
-from pea_sim.market.leveraged import compute_leveraged_returns
-from pea_sim.portfolio.costs import compute_transaction_costs
+from invest_sim.market.leveraged import compute_leveraged_returns
+from invest_sim.portfolio.costs import compute_transaction_costs
 
 
 @dataclass

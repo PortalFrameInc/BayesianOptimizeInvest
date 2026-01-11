@@ -1,4 +1,4 @@
-run_name: pea_sim_example
+run_name: invest_sim_example
 time_step: D
 n_years: 10
 trading_days_per_year: 252

@@ -7,14 +7,14 @@ from typing import List, Tuple
 import numpy as np
 import pandas as pd
 
-from pea_sim.config import load_cost_model, load_market_model, load_simulation, load_strategy, load_universe
-from pea_sim.config.schemas import MarketModelConfig, PortfolioPaths
-from pea_sim.market.gbm import GBMModel
-from pea_sim.market.regimes import RegimeSwitchingModel
-from pea_sim.market.student_t import StudentTModel
-from pea_sim.metrics import compute_metrics, pareto_set, select_ranking
-from pea_sim.portfolio import simulate_portfolio
-from pea_sim.reporting import (
+from invest_sim.config import load_cost_model, load_market_model, load_simulation, load_strategy, load_universe
+from invest_sim.config.schemas import MarketModelConfig, PortfolioPaths
+from invest_sim.market.gbm import GBMModel
+from invest_sim.market.regimes import RegimeSwitchingModel
+from invest_sim.market.student_t import StudentTModel
+from invest_sim.metrics import compute_metrics, pareto_set, select_ranking
+from invest_sim.portfolio import simulate_portfolio
+from invest_sim.reporting import (
     plot_cdf,
     plot_nav_fanchart,
     plot_scatter_cagr_vs_dd,

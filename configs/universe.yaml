@@ -24,4 +24,4 @@ leveraged_assets:
   - id: NASDAQ100_X2
     underlying_id: NASDAQ100
     leverage: 2.0
-    extra_fee_annual: 0.006
+    ter_annual: 0.006

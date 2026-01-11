@@ -165,7 +165,8 @@ def simulate_portfolio(
             leveraged = leveraged_assets[asset_id]
             underlying_idx = base_asset_map[leveraged.underlying_id]
             underlying_returns = market_paths.returns[t, underlying_idx, :]
-            fee_annual = asset_config[leveraged.underlying_id].ter_annual + leveraged.extra_fee_annual
+            # Use the leveraged asset's declared TER (required).
+            fee_annual = leveraged.ter_annual
             daily_returns[idx] = compute_leveraged_returns(
                 underlying_returns,
                 leverage=leveraged.leverage,

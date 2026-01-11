@@ -56,7 +56,7 @@ class LeveragedAssetConfig(BaseModel):
     id: str
     underlying_id: str
     leverage: float
-    extra_fee_annual: float = Field(ge=0)
+    ter_annual: float = Field(ge=0)
 
 
 class CorrelationConfig(BaseModel):

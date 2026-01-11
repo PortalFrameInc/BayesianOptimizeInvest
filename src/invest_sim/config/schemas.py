@@ -31,7 +31,7 @@ class SimulationConfig(BaseModel):
     n_years: int = Field(ge=1)
     trading_days_per_year: int = 252
     n_paths: int = Field(ge=1)
-    seed: int
+    seed: Optional[int] = None
     initial_capital_eur: float = Field(gt=0)
     contributions: ContributionsConfig
     rebalancing: RebalancingConfig
@@ -43,6 +43,15 @@ class SimulationConfig(BaseModel):
         if value != "D":
             raise ValueError("time_step must be 'D' for daily")
         return value
+
+    @model_validator(mode="after")
+    def ensure_seed(self) -> "SimulationConfig":
+        if self.seed is None:
+            import secrets
+
+            # draw a 31-bit non-negative integer seed
+            self.seed = int(secrets.randbelow(2 ** 31 - 1))
+        return self
 
 
 class BaseAssetConfig(BaseModel):

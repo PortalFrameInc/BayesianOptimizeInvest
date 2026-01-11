@@ -49,7 +49,33 @@ def compute_metrics(
     daily_returns = nav[1:] / nav[:-1] - 1.0
     final_value = nav[-1]
     years = sim_config.n_years
-    cagr = (final_value / nav[0]) ** (1 / years) - 1.0
+
+    # legacy compounded CAGR (includes effect of contributions)
+    cagr_legacy = (final_value / nav[0]) ** (1 / years) - 1.0
+
+    # Time-Weighted Return (TWR) neutralisant les apports périodiques
+    n_steps = nav.shape[0] - 1
+    n_paths = nav.shape[1]
+    cashflow = np.zeros((n_steps + 1, n_paths))
+    if sim_config.contributions.enabled:
+        day_index = min(sim_config.contributions.day_of_month - 1, 20)
+        contrib = sim_config.contributions.monthly_amount_eur
+        for t in range(n_steps):
+            if t % 21 == day_index:
+                cashflow[t + 1, :] = contrib
+
+    # rendements périodiques nets des flux : r_t = (nav[t+1] - cashflow[t+1]) / nav[t] - 1
+    period_returns = np.zeros((n_steps, n_paths))
+    for t in range(n_steps):
+        denom = nav[t].copy()
+        mask = denom > 0
+        period_returns[t, mask] = (
+            (nav[t + 1, mask] - cashflow[t + 1, mask]) / denom[mask] - 1.0
+        )
+        period_returns[t, ~mask] = 0.0
+
+    total_return = np.prod(1.0 + period_returns, axis=0) - 1.0
+    cagr = (1.0 + total_return) ** (1.0 / years) - 1.0
     annualized_vol = np.std(daily_returns, axis=0, ddof=1) * np.sqrt(
         sim_config.trading_days_per_year
     )

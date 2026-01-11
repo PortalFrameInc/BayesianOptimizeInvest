@@ -84,7 +84,10 @@ def select_ranking(
     for name, summary in summary_by_strategy.items():
         record = {
             "strategy": name,
+            "cagr_p25": summary.loc["p25", "cagr"],
             "median_cagr": summary.loc["median", "cagr"],
+            "cagr_p75": summary.loc["p75", "cagr"],
+            "mean_cagr": summary.loc["mean", "cagr"],
             "p95_max_drawdown": summary.loc["p95", "max_drawdown"],
             "median_es_95": summary.loc["median", "es_95"],
         }

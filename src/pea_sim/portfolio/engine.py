@@ -83,7 +83,11 @@ def _apply_vol_targeting(
     if not strategy.overlays.vol_targeting.enabled:
         return base_weights
     target_vol = strategy.overlays.vol_targeting.target_vol_annual
-    scale = np.where(realized_vol_annual > 0, target_vol / realized_vol_annual, 1.0)
+    # avoid divide-by-zero warnings: only compute division where realized_vol_annual > 0
+    scale = np.ones_like(realized_vol_annual, dtype=float)
+    mask = realized_vol_annual > 0
+    if np.any(mask):
+        scale[mask] = target_vol / realized_vol_annual[mask]
     scale = np.clip(
         scale,
         strategy.overlays.vol_targeting.min_leverage_multiplier,

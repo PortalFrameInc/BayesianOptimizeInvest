@@ -78,7 +78,7 @@ def compute_metrics(
 
 def select_ranking(
     summary_by_strategy: Dict[str, pd.DataFrame],
-    max_drawdown_p95_limit: float = 0.60,
+    max_drawdown_p95_limit: float = 0.70,
 ) -> pd.DataFrame:
     records = []
     for name, summary in summary_by_strategy.items():

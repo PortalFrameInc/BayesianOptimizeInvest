@@ -10,7 +10,7 @@ def test_end_to_end_run(tmp_path: Path):
     universe = Path("configs/universe.yaml")
     cost = Path("configs/cost_model.yaml")
     market = Path("configs/market_models/gbm.yaml")
-    strategy = Path("configs/strategies/buy_and_hold_world.yaml")
+    strategy = Path("configs/strategies/mono/mono_world.yaml")
 
     base_data = yaml.safe_load(base.read_text(encoding="utf-8"))
     base_data["n_years"] = 1

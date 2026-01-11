@@ -1,6 +1,8 @@
-name: nasdaq2x_only
+name: core_satellite_65_20_15
 target_weights:
-  NASDAQ100_X2: 1.0
+  WORLD: 0.65
+  NASDAQ100: 0.20
+  NASDAQ100_X2: 0.15
 constraints:
   max_weight: 1.0
   allow_cash: false

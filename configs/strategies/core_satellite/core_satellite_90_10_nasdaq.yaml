@@ -1,6 +1,6 @@
-name: core_satellite_world_nasdaq2x
+name: core_satellite_90_10_nasdaq
 target_weights:
-  WORLD: 0.9
+  NASDAQ100: 0.9
   NASDAQ100_X2: 0.1
 constraints:
   max_weight: 1.0

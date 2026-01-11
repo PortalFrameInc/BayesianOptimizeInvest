@@ -1,0 +1,14 @@
+name: core_satellite_85_15_world
+target_weights:
+  WORLD: 0.85
+  NASDAQ100_X2: 0.15
+constraints:
+  max_weight: 1.0
+  allow_cash: false
+overlays:
+  vol_targeting:
+    enabled: false
+    target_vol_annual: 0.12
+    lookback_days: 63
+    max_leverage_multiplier: 1.0
+    min_leverage_multiplier: 0.0

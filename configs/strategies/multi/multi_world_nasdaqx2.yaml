@@ -1,13 +1,14 @@
-name: vol_targeting_world_with_leverage
+name: multi_world_nasdaqx2
 target_weights:
-  WORLD: 1.0
+  WORLD: 0.9
+  NASDAQ100_X2: 0.1
 constraints:
   max_weight: 1.0
-  allow_cash: true
+  allow_cash: false
 overlays:
   vol_targeting:
-    enabled: true
+    enabled: false
     target_vol_annual: 0.12
     lookback_days: 63
     max_leverage_multiplier: 1.0
-    min_leverage_multiplier: 0.3
+    min_leverage_multiplier: 0.0

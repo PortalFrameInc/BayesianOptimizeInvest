@@ -28,7 +28,7 @@ pea-sim validate \
   --universe configs/universe.yaml \
   --cost configs/cost_model.yaml \
   --market configs/market_models/regimes.yaml \
-  --strategy configs/strategies/buy_and_hold_world.yaml
+  --strategy configs/strategies/mono/mono_world.yaml
 ```
 
 Lancer une stratégie unique :
@@ -39,7 +39,7 @@ pea-sim run \
   --universe configs/universe.yaml \
   --cost configs/cost_model.yaml \
   --market configs/market_models/regimes.yaml \
-  --strategy configs/strategies/buy_and_hold_world.yaml
+  --strategy configs/strategies/mono/mono_world.yaml
 ```
 
 Comparer toutes les stratégies :
@@ -91,7 +91,7 @@ Après cela, adaptez les chemins dans `pyproject.toml` / CI si nécessaire.
 Pour exécuter la validation de base et les tests :
 
 ```bash
-pea-sim validate --base configs/base.yaml --universe configs/universe.yaml --cost configs/cost_model.yaml --market configs/market_models/regimes.yaml --strategy configs/strategies/buy_and_hold_world.yaml
+pea-sim validate --base configs/base.yaml --universe configs/universe.yaml --cost configs/cost_model.yaml --market configs/market_models/regimes.yaml --strategy configs/strategies/mono/mono_world.yaml
 pytest -q
 ```
 

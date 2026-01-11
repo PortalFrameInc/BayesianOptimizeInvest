@@ -43,8 +43,34 @@ def write_comparison_report(
     summary: pd.DataFrame,
     ranking: pd.DataFrame,
     pareto: pd.DataFrame,
+    base_config: Dict = None,
 ) -> None:
-    lines = ["# PEA Strategy Comparison", "", "## Metrics Summary", ""]
+    lines = ["# PEA Strategy Comparison", ""]
+    
+    if base_config:
+        lines.append("## Simulation Parameters")
+        lines.append("")
+        lines.append(f"- **Horizon**: {base_config.get('n_years', 'N/A')} years")
+        lines.append(f"- **Number of paths**: {base_config.get('n_paths', 'N/A'):,}")
+        lines.append(f"- **Initial capital**: {base_config.get('initial_capital_eur', 'N/A'):,} EUR")
+        lines.append(f"- **Time step**: {base_config.get('time_step', 'N/A')}")
+        lines.append(f"- **Trading days per year**: {base_config.get('trading_days_per_year', 'N/A')}")
+        
+        if 'seed' in base_config and base_config['seed'] is not None:
+            lines.append(f"- **Seed**: {base_config['seed']}")
+        
+        rebal = base_config.get('rebalancing', {})
+        if rebal:
+            lines.append(f"- **Rebalancing**: {rebal.get('frequency', 'N/A')} (threshold: {rebal.get('threshold_abs', 'N/A')})")
+        
+        contrib = base_config.get('contributions', {})
+        if contrib and contrib.get('enabled'):
+            lines.append(f"- **Monthly contributions**: {contrib.get('monthly_amount_eur', 'N/A')} EUR")
+        
+        lines.append("")
+    
+    lines.append("## Metrics Summary")
+    lines.append("")
     lines.append(_format_table(summary, index=False))
     lines.append("")
     lines.append("## Ranking")

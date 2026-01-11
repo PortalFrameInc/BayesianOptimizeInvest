@@ -94,6 +94,6 @@ def compare_strategies(
 
     ranking = select_ranking(summary_by_strategy)
     pareto = pareto_set(summary_by_strategy)
-    write_comparison_report(output_dir, summary_table, ranking, pareto)
+    write_comparison_report(output_dir, summary_table, ranking, pareto, sim_config.model_dump())
 
     return ComparisonResult(output_dir=output_dir, metrics_summary=summary_table)

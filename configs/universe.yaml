@@ -1,3 +1,7 @@
+# Universe configuration for financial assets
+# mu_annuel = esperance annuel
+# sigma_annual = volatilité annuel
+# ter_annual = (Total Expense Ratio) frais annuel de gestion
 assets:
   - id: WORLD
     mu_annual: 0.07

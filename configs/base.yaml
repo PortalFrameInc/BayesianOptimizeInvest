@@ -3,11 +3,11 @@ time_step: D
 n_years: 10
 trading_days_per_year: 252
 n_paths: 2500 # nombres de simulations (monter à 10 000 pour fiabilité autour de 0,1 point %)
-# seed: 123 # Si non présente, généré aléatoirement
+seed: 123 # Si non présente, généré aléatoirement
 initial_capital_eur: 10000
-contributions:
-  enabled: true
-  monthly_amount_eur: 200
+contributions: # gestion de contributions mensuelles
+  enabled: false
+  monthly_amount_eur: 1000
   day_of_month: 5
 rebalancing:
   frequency: quarterly

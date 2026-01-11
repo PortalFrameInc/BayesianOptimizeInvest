@@ -23,7 +23,7 @@ pip install -e .
 Valider les configurations :
 
 ```bash
-pea-sim validate \
+invest-sim validate \
   --base configs/base.yaml \
   --universe configs/universe.yaml \
   --cost configs/cost_model.yaml \
@@ -34,7 +34,7 @@ pea-sim validate \
 Lancer une stratégie unique :
 
 ```bash
-pea-sim run \
+invest-sim run \
   --base configs/base.yaml \
   --universe configs/universe.yaml \
   --cost configs/cost_model.yaml \
@@ -45,7 +45,7 @@ pea-sim run \
 Comparer toutes les stratégies :
 
 ```bash
-pea-sim compare \
+invest-sim compare \
   --base configs/base.yaml \
   --universe configs/universe.yaml \
   --cost configs/cost_model.yaml \
@@ -71,27 +71,12 @@ Chaque exécution créé un dossier horodaté dans `runs/` contenant :
 - `plots/*.png`
 - `report.md`
 
-## Déplacer le projet à la racine
-
-Si vous souhaitez retirer le dossier `pea-sim-parametric` et remonter tout le contenu à la racine du dépôt, voici une séquence de commandes conseillée (vérifiez d'abord l'état du dépôt avec `git status`) :
-
-```bash
-# depuis le dossier racine du workspace
-git mv pea-sim-parametric/* .
-git mv pea-sim-parametric/.[!.]* .  # pour les fichiers cachés (attention aux shells Windows)
-git commit -m "Move project files to repository root"
-git rm -r pea-sim-parametric
-git commit -m "Remove empty pea-sim-parametric folder"
-```
-
-Après cela, adaptez les chemins dans `pyproject.toml` / CI si nécessaire.
-
 ## Tests rapides
 
 Pour exécuter la validation de base et les tests :
 
 ```bash
-pea-sim validate --base configs/base.yaml --universe configs/universe.yaml --cost configs/cost_model.yaml --market configs/market_models/regimes.yaml --strategy configs/strategies/mono/mono_world.yaml
+invest-sim validate --base configs/base.yaml --universe configs/universe.yaml --cost configs/cost_model.yaml --market configs/market_models/regimes.yaml --strategy configs/strategies/mono/mono_world.yaml
 pytest -q
 ```
 

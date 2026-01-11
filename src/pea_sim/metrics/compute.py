@@ -85,9 +85,9 @@ def select_ranking(
         record = {
             "strategy": name,
             "cagr_p25": summary.loc["p25", "cagr"],
-            "median_cagr": summary.loc["median", "cagr"],
+            "cagr_median": summary.loc["median", "cagr"],
             "cagr_p75": summary.loc["p75", "cagr"],
-            "mean_cagr": summary.loc["mean", "cagr"],
+            "cagr_mean": summary.loc["mean", "cagr"],
             "p95_max_drawdown": summary.loc["p95", "max_drawdown"],
             "median_es_95": summary.loc["median", "es_95"],
         }
@@ -95,12 +95,11 @@ def select_ranking(
     table = pd.DataFrame(records)
     eligible = table[table["p95_max_drawdown"] <= max_drawdown_p95_limit].copy()
     eligible = eligible.sort_values(
-        by=["median_cagr", "median_es_95"], ascending=[False, True]
+        by=["cagr_median", "median_es_95"], ascending=[False, True]
     )
     eligible["ranking"] = np.arange(1, len(eligible) + 1)
     merged = table.merge(eligible[["strategy", "ranking"]], on="strategy", how="left")
-    return merged.sort_values(by=["ranking", "median_cagr"], ascending=[True, False])
-
+    return merged.sort_values(by=["ranking", "cagr_median"], ascending=[True, False])
 
 def pareto_set(summary_by_strategy: Dict[str, pd.DataFrame]) -> pd.DataFrame:
     records = []
@@ -108,7 +107,7 @@ def pareto_set(summary_by_strategy: Dict[str, pd.DataFrame]) -> pd.DataFrame:
         records.append(
             {
                 "strategy": name,
-                "median_cagr": summary.loc["median", "cagr"],
+                "cagr_median": summary.loc["median", "cagr"],
                 "p95_max_drawdown": summary.loc["p95", "max_drawdown"],
             }
         )
@@ -116,10 +115,10 @@ def pareto_set(summary_by_strategy: Dict[str, pd.DataFrame]) -> pd.DataFrame:
     pareto = []
     for _, row in table.iterrows():
         dominated = table[
-            (table["median_cagr"] >= row["median_cagr"])
+            (table["cagr_median"] >= row["cagr_median"])
             & (table["p95_max_drawdown"] <= row["p95_max_drawdown"])
             & (
-                (table["median_cagr"] > row["median_cagr"])
+                (table["cagr_median"] > row["cagr_median"])
                 | (table["p95_max_drawdown"] < row["p95_max_drawdown"])
             )
         ]

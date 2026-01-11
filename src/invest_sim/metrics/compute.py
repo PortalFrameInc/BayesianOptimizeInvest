@@ -48,13 +48,15 @@ def compute_metrics(
     nav = portfolio_paths.nav
     daily_returns = nav[1:] / nav[:-1] - 1.0
     final_value = nav[-1]
-    years = sim_config.n_years
+    trading_days = sim_config.trading_days_per_year
+    n_steps = nav.shape[0] - 1
+    # compute actual years from simulated nav length to avoid mismatches
+    years = float(n_steps) / float(trading_days)
 
     # legacy compounded CAGR (includes effect of contributions)
     cagr_legacy = (final_value / nav[0]) ** (1 / years) - 1.0
 
     # Time-Weighted Return (TWR) neutralisant les apports périodiques
-    n_steps = nav.shape[0] - 1
     n_paths = nav.shape[1]
     cashflow = np.zeros((n_steps + 1, n_paths))
     if sim_config.contributions.enabled:

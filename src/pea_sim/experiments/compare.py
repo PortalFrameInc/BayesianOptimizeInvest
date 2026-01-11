@@ -50,7 +50,12 @@ def compare_strategies(
     metrics_by_strategy: Dict[str, pd.DataFrame] = {}
     summary_by_strategy: Dict[str, pd.DataFrame] = {}
 
-    strategy_files = sorted(path for path in strategies_dir.glob("*.yaml"))
+    # recursively find .yaml and .yml files in the strategies directory
+    strategy_files = sorted(
+        [p for ext in ("*.yaml", "*.yml") for p in strategies_dir.rglob(ext)]
+    )
+    if not strategy_files:
+        raise ValueError(f"No strategy files found under {strategies_dir}")
     for strategy_path in strategy_files:
         strategy = load_strategy(strategy_path)
         portfolio_paths = simulate_portfolio(market_paths, universe, strategy, cost_model, sim_config)
